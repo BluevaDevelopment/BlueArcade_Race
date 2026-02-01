@@ -1,0 +1,12 @@
+name: Race
+id: race
+version: 1.0.0
+type: MICROGAME
+api-version: 1.0
+main: net.blueva.arcade.modules.race.RaceModule
+
+authors:
+  - Blueva
+  - Whiron
+
+description: "Classic race minigame - first to the finish line wins!"

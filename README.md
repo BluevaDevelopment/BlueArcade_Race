@@ -46,6 +46,11 @@ Finish the setup with the commands below:
 - **Minigame ID:** `race`
 - **Module Type:** `MICROGAME`
 
+## Building individual editions
+If you only need one edition, you can build it on its own:
+- `mvn clean package -pl race-minecraft -am`
+- `mvn clean package -pl race-hytale -am`
+
 ## Links & Support
 - Website: https://www.blueva.net
 - Documentation: https://docs.blueva.net/books/blue-arcade
