@@ -162,6 +162,11 @@ public class RaceGameManager {
     private void processActiveMovement(GameContext<Player, Location, World, Material, ItemStack, Sound, Block, Entity> context,
                                        Player player,
                                        Location to) {
+        // Skip death handling for spectators
+        if (context.getSpectators().contains(player)) {
+            return;
+        }
+
         if (!context.isInsideBounds(to)) {
             playDeathEffect(player);
             context.respawnPlayer(player);
@@ -184,7 +189,7 @@ public class RaceGameManager {
             return;
         }
 
-        if (messagingService.isInsideFinishLine(context, to) && !context.getSpectators().contains(player)) {
+        if (messagingService.isInsideFinishLine(context, to)) {
             context.finishPlayer(player);
 
             int position = context.getSpectators().indexOf(player) + 1;
