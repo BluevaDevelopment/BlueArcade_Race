@@ -87,6 +87,7 @@ public class RaceGameManager {
 
         final int[] timeLeft = {gameTime};
         final int[] tickCount = {0};
+        final int[] unstableEndChecks = {0};
 
         String taskId = "arena_" + arenaId + "_race_timer";
 
@@ -106,10 +107,22 @@ public class RaceGameManager {
             List<Player> allPlayers = context.getPlayers();
             List<Player> spectators = context.getSpectators();
 
-            if (allPlayers.size() < 2 || alivePlayers.isEmpty() || spectators.size() >= 3 || timeLeft[0] <= 0) {
+            boolean shouldEnd = allPlayers.size() < 2
+                    || alivePlayers.isEmpty()
+                    || spectators.size() >= 3
+                    || timeLeft[0] <= 0;
+
+            if (shouldEnd) {
+                unstableEndChecks[0]++;
+                // Avoid ending the round from a transient context snapshot right as the game starts.
+                if (tickCount[0] < 4 || unstableEndChecks[0] < 3) {
+                    return;
+                }
                 endGameOnce(context);
                 return;
             }
+
+            unstableEndChecks[0] = 0;
 
             for (Player player : allPlayers) {
                 if (!player.isOnline()) {
