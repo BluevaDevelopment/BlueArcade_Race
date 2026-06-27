@@ -6,7 +6,7 @@ import net.blueva.arcade.api.game.GameContext;
 import net.blueva.arcade.api.game.GamePhase;
 import net.blueva.arcade.api.module.ModuleInfo;
 import com.hypixel.hytale.math.vector.Location;
-import com.hypixel.hytale.math.vector.Vector3d;
+import org.joml.Vector3d;
 import com.hypixel.hytale.server.core.entity.Entity;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
@@ -89,7 +89,7 @@ public class RaceMessagingService {
             return;
         }
 
-        message = message.replace("{player}", player.getDisplayName());
+        message = message.replace("{player}", player.getPlayerRef().getUsername());
         for (Player target : context.getPlayers()) {
             context.getMessagesAPI().sendRaw(target, message);
         }
@@ -104,7 +104,7 @@ public class RaceMessagingService {
         }
 
         message = message
-                .replace("{player}", player.getDisplayName())
+                .replace("{player}", player.getPlayerRef().getUsername())
                 .replace("{position}", String.valueOf(position));
 
         for (Player target : context.getPlayers()) {

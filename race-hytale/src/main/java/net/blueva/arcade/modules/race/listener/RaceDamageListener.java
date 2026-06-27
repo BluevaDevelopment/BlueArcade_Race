@@ -10,6 +10,7 @@ import com.hypixel.hytale.component.dependency.RootDependency;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.EntityEventSystem;
 import com.hypixel.hytale.math.vector.Location;
+import org.joml.Vector3d;
 import com.hypixel.hytale.server.core.entity.Entity;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.entity.knockback.KnockbackComponent;
@@ -85,7 +86,7 @@ public class RaceDamageListener extends EntityEventSystem<EntityStore, Damage> {
         damage.removeMetaObject(Damage.KNOCKBACK_COMPONENT);
         KnockbackComponent knockback = store.getComponent(ref, KnockbackComponent.getComponentType());
         if (knockback != null) {
-            knockback.setVelocity(com.hypixel.hytale.math.vector.Vector3d.ZERO);
+            knockback.setVelocity(new Vector3d(0.0, 0.0, 0.0));
             knockback.setDuration(0.0F);
         }
         commandBuffer.tryRemoveComponent(ref, KnockbackComponent.getComponentType());

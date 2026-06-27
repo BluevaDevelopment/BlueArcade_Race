@@ -3,7 +3,7 @@ package net.blueva.arcade.modules.race.support;
 import net.blueva.arcade.api.game.GameContext;
 import net.blueva.arcade.modules.race.state.RaceStateRegistry;
 import com.hypixel.hytale.math.vector.Location;
-import com.hypixel.hytale.math.vector.Vector3d;
+import org.joml.Vector3d;
 import com.hypixel.hytale.server.core.entity.Entity;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.inventory.ItemStack;

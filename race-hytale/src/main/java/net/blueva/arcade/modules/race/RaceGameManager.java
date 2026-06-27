@@ -12,12 +12,14 @@ import net.blueva.arcade.modules.race.support.RaceLoadoutService;
 import net.blueva.arcade.modules.race.support.RaceMessagingService;
 import net.blueva.arcade.modules.race.support.RaceProgressService;
 import net.blueva.arcade.modules.race.support.RaceStatsService;
+import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.math.vector.Location;
-import com.hypixel.hytale.math.vector.Vector3d;
-import com.hypixel.hytale.math.vector.Vector3f;
+import com.hypixel.hytale.math.vector.Rotation3f;
 import com.hypixel.hytale.protocol.MovementSettings;
 import com.hypixel.hytale.server.core.entity.Entity;
+import com.hypixel.hytale.server.core.modules.entity.component.TransformComponent;
+import org.joml.Vector3d;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.entity.entities.player.movement.MovementManager;
 import com.hypixel.hytale.server.core.inventory.ItemStack;
@@ -296,11 +298,11 @@ public class RaceGameManager {
             placeholders.put("race_position", String.valueOf(position));
 
             List<Player> topPlayers = progressService.getTopPlayersByDistance(context);
-            placeholders.put("place_1", topPlayers.size() >= 1 ? topPlayers.get(0).getDisplayName() : "-");
-            placeholders.put("place_2", topPlayers.size() >= 2 ? topPlayers.get(1).getDisplayName() : "-");
-            placeholders.put("place_3", topPlayers.size() >= 3 ? topPlayers.get(2).getDisplayName() : "-");
-            placeholders.put("place_4", topPlayers.size() >= 4 ? topPlayers.get(3).getDisplayName() : "-");
-            placeholders.put("place_5", topPlayers.size() >= 5 ? topPlayers.get(4).getDisplayName() : "-");
+            placeholders.put("place_1", topPlayers.size() >= 1 ? topPlayers.get(0).getPlayerRef().getUsername() : "-");
+            placeholders.put("place_2", topPlayers.size() >= 2 ? topPlayers.get(1).getPlayerRef().getUsername() : "-");
+            placeholders.put("place_3", topPlayers.size() >= 3 ? topPlayers.get(2).getPlayerRef().getUsername() : "-");
+            placeholders.put("place_4", topPlayers.size() >= 4 ? topPlayers.get(3).getPlayerRef().getUsername() : "-");
+            placeholders.put("place_5", topPlayers.size() >= 5 ? topPlayers.get(4).getPlayerRef().getUsername() : "-");
         }
 
         return placeholders;
@@ -450,12 +452,18 @@ public class RaceGameManager {
     }
 
     private Location resolvePlayerLocation(Player player) {
-        if (player == null || player.getWorld() == null || player.getTransformComponent() == null) {
+        if (player == null || player.getWorld() == null || player.getReference() == null) {
             return null;
         }
-        Vector3d position = player.getTransformComponent().getPosition();
-        Vector3f rotation = player.getTransformComponent().getRotation();
-        return new Location(player.getWorld().getName(), position.x, position.y, position.z, rotation.x, rotation.y, rotation.z);
+        Ref<EntityStore> ref = player.getReference();
+        Store<EntityStore> store = ref.getStore();
+        TransformComponent transform = store.getComponent(ref, TransformComponent.getComponentType());
+        if (transform == null) {
+            return null;
+        }
+        Vector3d position = transform.getPosition();
+        Rotation3f rotation = transform.getRotation();
+        return new Location(player.getWorld().getName(), position.x, position.y, position.z, rotation.pitch(), rotation.yaw(), rotation.roll());
     }
 
     private boolean hasBlockChanged(Location from, Location to) {
@@ -474,10 +482,16 @@ public class RaceGameManager {
         }
         context.getSchedulerAPI().runAtEntity(player, () -> {
             Vector3d position = location.getPosition();
-            Vector3f rotation = location.getRotation();
-            player.getTransformComponent().teleportPosition(position);
+            Rotation3f rotation = location.getRotation();
+            Ref<EntityStore> ref = player.getReference();
+            Store<EntityStore> store = ref.getStore();
+            TransformComponent transform = store.getComponent(ref, TransformComponent.getComponentType());
+            if (transform == null) {
+                return;
+            }
+            transform.setPosition(position);
             if (rotation != null) {
-                player.getTransformComponent().teleportRotation(rotation);
+                transform.setRotation(rotation);
             }
         });
     }
