@@ -36,9 +36,8 @@ public class RaceMessagingService {
     }
 
     public void sendDescription(GameContext<Player, Location, World, Material, ItemStack, Sound, Block, Entity> context) {
-        List<String> description = moduleConfig.getStringListFrom("language.yml", "description");
-
         for (Player player : context.getPlayers()) {
+            List<String> description = moduleConfig.getTranslationList(player, "description");
             for (String line : description) {
                 context.getMessagesAPI().sendRaw(player, line);
             }
@@ -52,11 +51,11 @@ public class RaceMessagingService {
 
             context.getSoundsAPI().play(player, coreConfig.getSound("sounds.starting_game.countdown"));
 
-            String title = coreConfig.getLanguage("titles.starting_game.title")
+            String title = coreConfig.getLanguage(player, "titles.starting_game.title")
                     .replace("{game_display_name}", moduleInfo.getName())
                     .replace("{time}", String.valueOf(secondsLeft));
 
-            String subtitle = coreConfig.getLanguage("titles.starting_game.subtitle")
+            String subtitle = coreConfig.getLanguage(player, "titles.starting_game.subtitle")
                     .replace("{game_display_name}", moduleInfo.getName())
                     .replace("{time}", String.valueOf(secondsLeft));
 
@@ -68,10 +67,10 @@ public class RaceMessagingService {
         for (Player player : context.getPlayers()) {
             if (!player.isOnline()) continue;
 
-            String title = coreConfig.getLanguage("titles.game_started.title")
+            String title = coreConfig.getLanguage(player, "titles.game_started.title")
                     .replace("{game_display_name}", moduleInfo.getName());
 
-            String subtitle = coreConfig.getLanguage("titles.game_started.subtitle")
+            String subtitle = coreConfig.getLanguage(player, "titles.game_started.subtitle")
                     .replace("{game_display_name}", moduleInfo.getName());
 
             context.getTitlesAPI().sendRaw(player, title, subtitle, 0, 20, 20);
@@ -83,13 +82,13 @@ public class RaceMessagingService {
     public void sendActionBar(GameContext<Player, Location, World, Material, ItemStack, Sound, Block, Entity> context,
                               Player player,
                               int timeLeft) {
-        String actionBarTemplate = coreConfig.getLanguage("action_bar.in_game.global");
+        String actionBarTemplate = coreConfig.getLanguage(player, "action_bar.in_game.global");
         if (actionBarTemplate == null) {
             return;
         }
 
         String actionBarMessage = actionBarTemplate
-                .replace("{time}", String.valueOf(timeLeft))
+                .replace("{time}", formatCountdownTime(timeLeft))
                 .replace("{round}", String.valueOf(context.getCurrentRound()))
                 .replace("{round_max}", String.valueOf(context.getMaxRounds()));
         context.getMessagesAPI().sendActionBar(player, actionBarMessage);
@@ -135,8 +134,8 @@ public class RaceMessagingService {
     public void sendFinishTitles(GameContext<Player, Location, World, Material, ItemStack, Sound, Block, Entity> context,
                                  Player player,
                                  int position) {
-        String title = moduleConfig.getStringFrom("language.yml", "titles.finished.title");
-        String subtitle = moduleConfig.getStringFrom("language.yml", "titles.finished.subtitle")
+        String title = moduleConfig.getTranslation(player, "titles.finished.title");
+        String subtitle = moduleConfig.getTranslation(player, "titles.finished.subtitle")
                 .replace("{position}", String.valueOf(position));
 
         context.getTitlesAPI().sendRaw(player, title, subtitle, 0, 80, 20);
@@ -196,7 +195,7 @@ public class RaceMessagingService {
     }
 
     private String getRandomMessage(String path) {
-        List<String> messages = moduleConfig.getStringListFrom("language.yml", path);
+        List<String> messages = moduleConfig.getTranslationList(null, path);
         if (messages == null || messages.isEmpty()) {
             return null;
         }
@@ -204,4 +203,10 @@ public class RaceMessagingService {
         int index = ThreadLocalRandom.current().nextInt(messages.size());
         return messages.get(index);
     }
+
+    private static String formatCountdownTime(int seconds) {
+        int safeSeconds = Math.max(0, seconds);
+        return String.format("%02d:%02d", safeSeconds / 60, safeSeconds % 60);
+    }
+
 }

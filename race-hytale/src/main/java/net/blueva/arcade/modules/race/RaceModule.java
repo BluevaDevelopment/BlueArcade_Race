@@ -22,6 +22,11 @@ import com.hypixel.hytale.server.core.universe.world.World;
 import com.hypixel.hytale.component.Holder;
 
 import java.util.Map;
+import net.blueva.arcade.api.setup.ModuleSetupCommand;
+import net.blueva.arcade.api.setup.ModuleSetupMetadata;
+import net.blueva.arcade.api.setup.ModuleSetupStep;
+import net.blueva.arcade.api.setup.ModuleSetupStatusCheck;
+import java.util.List;
 
 public class RaceModule implements GameModule<Player, Location, World, String, ItemStack, String, Holder, Entity, EventSubscription<?>, Short> {
 
@@ -48,8 +53,7 @@ public class RaceModule implements GameModule<Player, Location, World, String, I
         statsService = new RaceStatsService(statsAPI, moduleInfo);
         statsService.registerStats();
 
-        moduleConfig.register("language.yml", 1);
-        moduleConfig.register("achievements.yml", 1);
+        moduleConfig.register("achievements.yml");
 
         if (achievementsAPI != null) {
             achievementsAPI.registerModuleAchievements(moduleInfo.getId(), "achievements.yml");
@@ -62,8 +66,8 @@ public class RaceModule implements GameModule<Player, Location, World, String, I
             voteMenu.registerGame(
                     moduleInfo.getId(),
                     voteItem,
-                    moduleConfig.getStringFrom("language.yml", "vote_menu.name"),
-                    moduleConfig.getStringListFrom("language.yml", "vote_menu.lore")
+                    moduleConfig.getTranslation(null, "vote_menu.name"),
+                    moduleConfig.getTranslationList(null, "vote_menu.lore")
             );
         }
 
@@ -124,4 +128,32 @@ public class RaceModule implements GameModule<Player, Location, World, String, I
     public Map<String, String> getCustomPlaceholders(Player player) {
         return gameManager.getCustomPlaceholders(player);
     }
+
+    @Override
+    public ModuleSetupMetadata getSetupMetadata() {
+        return new ModuleSetupMetadata() {
+
+            @Override
+            public List<ModuleSetupStep> getSetupSteps() {
+                return List.of(
+                        new ModuleSetupStep("finishline", true, "Configure Finishline", "Configure the module-specific finishline setup data.", List.of("/baa game <arena> race finishline"), "selection region")
+                );
+            }
+
+            @Override
+            public List<ModuleSetupCommand> getSetupCommands() {
+                return List.of(
+                        new ModuleSetupCommand("finishline", "/baa game <arena> race finishline", "Configure finishline setup data.", true)
+                );
+            }
+
+            @Override
+            public List<ModuleSetupStatusCheck<?, ?, ?>> getStatusChecks() {
+                return List.of(
+                        new ModuleSetupStatusCheck<>("finishline", true, "Select the finish line region.", context -> context.getData().has("game.finish_line.bounds.min.x") && context.getData().has("game.finish_line.bounds.max.x"))
+                );
+            }
+        };
+    }
+
 }

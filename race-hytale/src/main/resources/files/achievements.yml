@@ -1,10 +1,17 @@
-file_version: 1
+#  ____  _               _                      _
+# | __ )| |_   _  ___   / \   _ __ ___ __ _  __| | ___
+# |  _ \| | | | |/ _ \ / _ \ | '__/ __/ _` |/ _` |/ _ \
+# | |_) | | |_| |  __// ___ \| | | (_| (_| | (_| |  __/
+# |____/|_|\__,_|\___/_/   \_|_|  \___\__,_|\__,_|\___|
+#
+# [!] Arcade by Blueva | https://blueva.net/store/blue-arcade [!]
+
 category:
-  id: race
+  id: "race"
   name: "Race"
   description:
     - "Achievements tied to Race."
-  icon: FEATHER
+  icon: "FEATHER"
   sort_order: 10
 
 achievements:
@@ -12,7 +19,7 @@ achievements:
     name: "Rookie Racer"
     description:
       - "Finish your first races."
-    icon: FEATHER
+    icon: "FEATHER"
     phases:
       1:
         name: "First lap"
@@ -26,7 +33,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=10"
           messages:
             - "  <gold>⛁</gold> <yellow>+10 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+10 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+10 XP</light_purple>"
       2:
         name: "Getting faster"
         description:
@@ -39,7 +46,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=25"
           messages:
             - "  <gold>⛁</gold> <yellow>+25 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+25 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+25 XP</light_purple>"
       3:
         name: "Seasoned driver"
         description:
@@ -52,7 +59,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=40"
           messages:
             - "  <gold>⛁</gold> <yellow>+40 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+40 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+40 XP</light_purple>"
       4:
         name: "Track veteran"
         description:
@@ -65,7 +72,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=60"
           messages:
             - "  <gold>⛁</gold> <yellow>+60 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+60 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+60 XP</light_purple>"
       5:
         name: "Pit crew legend"
         description:
@@ -78,13 +85,13 @@ achievements:
             - "baa xp --action=give --target={player} --amount=90"
           messages:
             - "  <gold>⛁</gold> <yellow>+90 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+90 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+90 XP</light_purple>"
 
   finish_line:
     name: "Finish Line"
     description:
       - "Cross the finish line multiple times."
-    icon: GOLD_BLOCK
+    icon: "GOLD_BLOCK"
     phases:
       1:
         name: "Warm-up"
@@ -98,7 +105,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=20"
           messages:
             - "  <gold>⛁</gold> <yellow>+20 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+20 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+20 XP</light_purple>"
       2:
         name: "Speedster"
         description:
@@ -111,7 +118,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=40"
           messages:
             - "  <gold>⛁</gold> <yellow>+40 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+40 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+40 XP</light_purple>"
       3:
         name: "Fast finisher"
         description:
@@ -124,7 +131,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=60"
           messages:
             - "  <gold>⛁</gold> <yellow>+60 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+60 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+60 XP</light_purple>"
       4:
         name: "Rapid finisher"
         description:
@@ -137,7 +144,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=80"
           messages:
             - "  <gold>⛁</gold> <yellow>+80 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+80 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+80 XP</light_purple>"
       5:
         name: "Finish line fixture"
         description:
@@ -150,13 +157,13 @@ achievements:
             - "baa xp --action=give --target={player} --amount=120"
           messages:
             - "  <gold>⛁</gold> <yellow>+120 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+120 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+120 XP</light_purple>"
 
   victory_lane:
     name: "Victory Lane"
     description:
       - "Collect race wins."
-    icon: DIAMOND_BLOCK
+    icon: "DIAMOND_BLOCK"
     phases:
       1:
         name: "First win"
@@ -170,7 +177,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=25"
           messages:
             - "  <gold>⛁</gold> <yellow>+25 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+25 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+25 XP</light_purple>"
       2:
         name: "Podium regular"
         description:
@@ -183,7 +190,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=50"
           messages:
             - "  <gold>⛁</gold> <yellow>+50 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+50 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+50 XP</light_purple>"
       3:
         name: "Race winner"
         description:
@@ -196,7 +203,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=70"
           messages:
             - "  <gold>⛁</gold> <yellow>+70 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+70 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+70 XP</light_purple>"
       4:
         name: "Circuit champion"
         description:
@@ -209,7 +216,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=100"
           messages:
             - "  <gold>⛁</gold> <yellow>+100 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+100 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+100 XP</light_purple>"
       5:
         name: "Grand prix king"
         description:
@@ -222,13 +229,13 @@ achievements:
             - "baa xp --action=give --target={player} --amount=150"
           messages:
             - "  <gold>⛁</gold> <yellow>+150 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+150 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+150 XP</light_purple>"
 
   lap_master:
     name: "Lap Master"
     description:
       - "Build long streaks of finish line crosses."
-    icon: REDSTONE_BLOCK
+    icon: "REDSTONE_BLOCK"
     phases:
       1:
         name: "Long run"
@@ -242,7 +249,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=45"
           messages:
             - "  <gold>⛁</gold> <yellow>+45 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+45 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+45 XP</light_purple>"
       2:
         name: "Lap legend"
         description:
@@ -255,7 +262,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=80"
           messages:
             - "  <gold>⛁</gold> <yellow>+80 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+80 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+80 XP</light_purple>"
       3:
         name: "Lap architect"
         description:
@@ -268,7 +275,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=110"
           messages:
             - "  <gold>⛁</gold> <yellow>+110 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+110 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+110 XP</light_purple>"
       4:
         name: "Lap titan"
         description:
@@ -281,7 +288,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=150"
           messages:
             - "  <gold>⛁</gold> <yellow>+150 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+150 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+150 XP</light_purple>"
       5:
         name: "Lap immortal"
         description:
@@ -294,13 +301,13 @@ achievements:
             - "baa xp --action=give --target={player} --amount=220"
           messages:
             - "  <gold>⛁</gold> <yellow>+220 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+220 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+220 XP</light_purple>"
 
   track_regular:
     name: "Track Regular"
     description:
       - "Keep racing and reaching the finish line."
-    icon: STONE
+    icon: "STONE"
     phases:
       1:
         name: "On the grid"
@@ -314,7 +321,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=35"
           messages:
             - "  <gold>⛁</gold> <yellow>+35 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+35 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+35 XP</light_purple>"
       2:
         name: "Track veteran"
         description:
@@ -327,7 +334,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=70"
           messages:
             - "  <gold>⛁</gold> <yellow>+70 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+70 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+70 XP</light_purple>"
       3:
         name: "Track fixture"
         description:
@@ -340,7 +347,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=100"
           messages:
             - "  <gold>⛁</gold> <yellow>+100 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+100 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+100 XP</light_purple>"
       4:
         name: "Circuit staple"
         description:
@@ -353,7 +360,7 @@ achievements:
             - "baa xp --action=give --target={player} --amount=140"
           messages:
             - "  <gold>⛁</gold> <yellow>+140 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+140 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+140 XP</light_purple>"
       5:
         name: "Track legend"
         description:
@@ -366,4 +373,4 @@ achievements:
             - "baa xp --action=give --target={player} --amount=200"
           messages:
             - "  <gold>⛁</gold> <yellow>+200 credits</yellow>"
-            - "  <purple>✹</purple> <light_purple>+200 XP</light_purple>"
+            - "  <dark_purple>✹</dark_purple> <light_purple>+200 XP</light_purple>"
