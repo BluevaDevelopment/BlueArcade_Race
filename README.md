@@ -1,7 +1,7 @@
 # BlueArcade - Race
 
 This resource is a **BlueArcade 3 module** and requires the core plugin to run.
-Get BlueArcade 3 here: https://store.blueva.net/resources/resource/1-blue-arcade/
+Get BlueArcade 3 here: https://blueva.net/store/blue-arcade
 
 ## Description
 Classic race mode: first to the finish line wins.
